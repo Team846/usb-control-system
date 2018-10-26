@@ -1,9 +1,9 @@
-package info.kunalsheth.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem
 
 import com.fazecast.jSerialComm.SerialPort
 import com.fazecast.jSerialComm.SerialPort.TIMEOUT_READ_BLOCKING
 import com.fazecast.jSerialComm.SerialPort.TIMEOUT_WRITE_BLOCKING
-import info.kunalsheth.usbcontrolsystem.Microcontroller.Mode.Servo
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.Mode.Servo
 import java.io.Closeable
 import java.io.File
 import java.io.Flushable

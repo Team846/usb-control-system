@@ -1,4 +1,4 @@
-package info.kunalsheth.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem
 
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.SwingWrapper

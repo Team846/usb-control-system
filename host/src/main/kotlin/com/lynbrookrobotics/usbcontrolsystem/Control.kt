@@ -1,4 +1,4 @@
-package info.kunalsheth.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem
 
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit

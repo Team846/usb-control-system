@@ -1,4 +1,4 @@
-package info.kunalsheth.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem
 
 import kotlin.math.sign
 

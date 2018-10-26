@@ -1,11 +1,11 @@
-package info.kunalsheth.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem
 
 import com.fazecast.jSerialComm.SerialPort.getCommPorts
-import info.kunalsheth.usbcontrolsystem.Microcontroller.EncoderFeedback.Encoder1
-import info.kunalsheth.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Period
-import info.kunalsheth.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Ticks
-import info.kunalsheth.usbcontrolsystem.Microcontroller.Mode.DirectionAndDutyCycle
-import info.kunalsheth.usbcontrolsystem.Microcontroller.MotorOutput.Motor1
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedback.Encoder1
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Period
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Ticks
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.Mode.DirectionAndDutyCycle
+import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.MotorOutput.Motor1
 import java.lang.Math.abs
 import kotlin.system.measureNanoTime
 
