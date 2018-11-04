@@ -6,6 +6,7 @@ import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedback.Enc
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Ticks
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.Mode.DirectionAndDutyCycle
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.MotorOutput.Motor1
+import com.lynbrookrobotics.usbcontrolsystem.graph.LiveGrapher
 
 fun main(args: Array<String>) {
 
@@ -20,7 +21,7 @@ fun main(args: Array<String>) {
     mcu.flush()
     println("Connected!")
 
-    val graph = ControlSystemGrapher("sec", "megaticks", "ticks / sec", "dc")
+    val graph = LiveGrapher("sec", "megaticks", "ticks / sec", "dc")
 
     var targetDc = 0
 

@@ -6,6 +6,7 @@ import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedbackType
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.EncoderFeedbackType.Ticks
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.Mode.DirectionAndDutyCycle
 import com.lynbrookrobotics.usbcontrolsystem.Microcontroller.MotorOutput.Motor1
+import com.lynbrookrobotics.usbcontrolsystem.graph.LiveGrapher
 import java.lang.Math.abs
 import kotlin.system.measureNanoTime
 
@@ -22,7 +23,7 @@ fun main(args: Array<String>) {
     mcu.flush()
     println("Connected!")
 
-    val graph = ControlSystemGrapher("sec", "hectoticks", "ticks / sec", "dc")
+    val graph = LiveGrapher("sec", "hectoticks", "ticks / sec", "dc")
 
     var i = 0.0
     var incr = 1

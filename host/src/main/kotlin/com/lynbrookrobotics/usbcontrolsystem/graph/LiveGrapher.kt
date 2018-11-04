@@ -1,27 +1,23 @@
-package com.lynbrookrobotics.usbcontrolsystem
+package com.lynbrookrobotics.usbcontrolsystem.graph
 
+import com.lynbrookrobotics.usbcontrolsystem.runPeriodic
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.SwingWrapper
 import org.knowm.xchart.XYChart
-import java.io.Flushable
 import java.util.*
 
-class ControlSystemGrapher(
-        private val timeUnits: String,
-        feedbackUnits: String,
-        derivativeOfFeedbackUnits: String,
-        outputUnits: String,
+class LiveGrapher(
+        override val timeUnits: String,
+        override val feedbackUnits: String,
+        override val derivativeOfFeedbackUnits: String,
+        override val outputUnits: String,
         val bufferSize: Int = 1000
-) : Flushable {
+) : Grapher {
 
     private val timeData = LinkedList<Double>()
     private val feedbackData = LinkedList<Double>()
     private val derivativeOfFeedbackData = LinkedList<Double>()
     private val outputData = LinkedList<Double>()
-
-    private val feedbackSeries = "Feedback ($feedbackUnits)"
-    private val derivativeOfFeedbackSeries = "Δ Feedback ($derivativeOfFeedbackUnits)"
-    private val outputSeries = "Output ($outputUnits)"
 
     lateinit var chart: XYChart
     lateinit var gui: SwingWrapper<XYChart>
@@ -31,7 +27,7 @@ class ControlSystemGrapher(
     }
 
     @Synchronized
-    operator fun invoke(timeStamp: Double, feedback: Double, derivativeOfFeedback: Double, output: Double) {
+    override operator fun invoke(timeStamp: Double, feedback: Double, derivativeOfFeedback: Double, output: Double) {
         if (timeData.size > bufferSize) {
             timeData.removeFirst()
             feedbackData.removeFirst()
@@ -54,7 +50,7 @@ class ControlSystemGrapher(
                     "Control System Graph",
                     "Time ($timeUnits)",
                     "Input/Output",
-                    arrayOf(feedbackSeries, derivativeOfFeedbackSeries, outputSeries),
+                    arrayOf(feedbackUnits, derivativeOfFeedbackUnits, outputUnits),
                     timeData.toDoubleArray(),
                     listOf(
                             feedbackData,
@@ -68,9 +64,9 @@ class ControlSystemGrapher(
         }
 
 
-        chart.updateXYSeries(feedbackSeries, timeData, feedbackData, null)
-        chart.updateXYSeries(derivativeOfFeedbackSeries, timeData, derivativeOfFeedbackData, null)
-        chart.updateXYSeries(outputSeries, timeData, outputData, null)
+        chart.updateXYSeries(feedbackUnits, timeData, feedbackData, null)
+        chart.updateXYSeries(derivativeOfFeedbackUnits, timeData, derivativeOfFeedbackData, null)
+        chart.updateXYSeries(outputUnits, timeData, outputData, null)
         gui.repaintChart()
     }
 }
