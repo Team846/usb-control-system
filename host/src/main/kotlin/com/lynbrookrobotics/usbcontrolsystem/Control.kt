@@ -19,10 +19,10 @@ fun limitCurrent(targetDc: Int, speed: Int, currentLimit: Int): Int {
     else 0
 }
 
-fun cap(targetDc: Int) = when {
-    targetDc > 100 -> 100
-    targetDc < -100 -> -100
-    else -> targetDc
+fun limitVoltage(targetDutyCycle: Double, dutyCycleLimit: Int = 100) = when {
+    targetDutyCycle > dutyCycleLimit -> dutyCycleLimit
+    targetDutyCycle < -dutyCycleLimit -> -dutyCycleLimit
+    else -> targetDutyCycle.toInt()
 }.toByte()
 
 val executor = Executors.newSingleThreadScheduledExecutor()

@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         else if (i <= -100) incr = +abs(incr)
         i += incr
 
-        val dc = cap(i.toInt())
+        val dc = limitVoltage(i)
 
         var flushes = 0
         val time = measureNanoTime {

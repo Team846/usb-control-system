@@ -57,12 +57,6 @@ class Microcontroller(
 
     val mode get() = receiveBuffer[25]
 
-    val log = File("system-log.csv").run {
-        delete()
-        createNewFile()
-        printWriter(Charsets.US_ASCII)
-    }
-
     private val receiveBuffer = ByteArray(34)
     private val sendBuffer = ByteArray(8)
 
@@ -90,8 +84,6 @@ class Microcontroller(
 
         val writeResult = device.writeBytes(sendBuffer, sendBuffer.size.toLong())
         if (writeResult != sendBuffer.size) System.err.println("device.writeBytes(...) returned $readResult, expected ${sendBuffer.size}")
-
-        log.flush()
     }
 
     override fun close() {

@@ -23,14 +23,14 @@ fun main(args: Array<String>) {
 
     val graph = LiveGrapher("sec", "megaticks", "ticks / sec", "dc")
 
-    var targetDc = 0
+    var targetDc = 0.0
 
     var lastPosition = 0
     runPeriodic(10 * 1000) {
         val feedback = mcu[Encoder1, Ticks]
         val speed = feedback - lastPosition
 
-        mcu[Motor1] = cap(targetDc)
+        mcu[Motor1] = limitVoltage(targetDc)
         mcu.flush()
 
         graph(mcu.microsTimeStamp / 1E6, feedback / 1E6, speed.toDouble(), mcu[Motor1].toDouble())
@@ -41,7 +41,7 @@ fun main(args: Array<String>) {
     while (true) {
         try {
             println("Analog1 = ${mcu[Analog1]}, Encoder1 = ${mcu[Encoder1, Ticks]}")
-            targetDc = readLine()!!.toInt()
+            targetDc = readLine()!!.toDouble()
         } catch (t: Throwable) {
             t.printStackTrace()
         }
